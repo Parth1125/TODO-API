@@ -6,11 +6,18 @@ from .serializers import TodoSerializer
 from .models import Todo
 # Create your views here.
 
-@api_view(['GET'])
+@api_view(['GET',"POST"])
 def listTodo(request):
-    todos= Todo.objects.all()
-    serializer = TodoSerializer(todos,many=True)
-    return Response(serializer.data)
+    if request.method == 'GET':
+        todos= Todo.objects.all()
+        serializer = TodoSerializer(todos,many=True)
+        return Response(serializer.data)
+    elif request.method == 'POST':
+        serializer = TodoSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data,status=status.HTTP_201_CREATED)
+        return Response(serializer._errors,status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
 def detailListTodo(request,pk):

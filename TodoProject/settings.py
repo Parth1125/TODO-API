@@ -40,6 +40,8 @@ INSTALLED_APPS = [
 
      'rest_framework',
 
+     'drf_yasg',
+
     'TodoApi.apps.TodoapiConfig',
 ]
 REST_FRAMEWORK = {
