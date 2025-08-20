@@ -40,7 +40,7 @@ INSTALLED_APPS = [
 
      'rest_framework',
      'rest_framework.authtoken',
-    #   'rest_auth',
+    #  'dj_rest_auth',
 
      'corsheaders',
 
@@ -50,12 +50,13 @@ INSTALLED_APPS = [
 ]
 REST_FRAMEWORK = {
  'DEFAULT_PERMISSION_CLASSES': [
- 'rest_framework.permissions.IsAuthenticated',
+ 'rest_framework.permissions.AllowAny',
  ],
-  'DEFAULT_AUTHENTICATION_CLASSES': [ # new
- 'rest_framework.authentication.SessionAuthentication',
- 'rest_framework.authentication.BasicAuthentication'
- ],
+   'TOKEN_MODEL': None,
+#   'DEFAULT_AUTHENTICATION_CLASSES': [ # new
+#  'rest_framework.authentication.SessionAuthentication',
+#  'rest_framework.authentication.BasicAuthentication'
+#  ],
  }
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
